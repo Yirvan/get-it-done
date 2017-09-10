@@ -2,9 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
     <title>{{title}}</title>
   </head>
   <body>
+    <div>
+      <a href="/logout">log out</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    <ul>
+      {% for category, message in messages %}
+      <li class="{{category}}">{{message}}</li>
+      {% endfor %}
+    </ul>
+    {% endwith %}
+
     {% block content %}
     {% endblock %}
   </body>
